@@ -18,7 +18,7 @@ interface HttpClient
      * get the header name for the access token
      * @return string
      */
-    protected function getAccessTokenHeader();
+    public function getAccessTokenHeader();
 
     /**
      * make a get request to the given uri
