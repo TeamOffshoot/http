@@ -85,6 +85,7 @@ class CurlHttpClient extends HttpClientAdapter
 
         if (!is_null($params) && !is_array($params)) {
             $this->addHeader('Content-Type', 'application/json');
+            $this->addHeader('Accept', 'application/json');
         }
 
         if (!is_null($params)) {
