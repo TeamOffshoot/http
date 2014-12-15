@@ -7,30 +7,25 @@ use Offshoot\HttpClient;
 abstract class HttpClientAdapter implements HttpClient
 {
 
-    /** @var string */
-    protected $accessToken;
+    /**
+     * an array of headers to be used in the request
+     * @var array
+     */
+    protected $headers;
 
-    public function setAccessToken($token)
+    public function __construct()
     {
-        $this->accessToken = $token;
+        $this->headers = array();
     }
 
     /**
-     * get the permanent access token
-     * @return string
+     * set a header on the request
+     * @param string $key
+     * @param string $value
      */
-    protected function getAccessToken()
+    public function addHeader($key, $value)
     {
-        return $this->accessToken;
-    }
-
-    /**
-     * returns a generic default that should be overriden
-     * @return string
-     */
-    protected function getAccessTokenHeader()
-    {
-        return 'X-Access-Token';
+        $this->headers[] = $key . ': ' . $value;
     }
 
 }

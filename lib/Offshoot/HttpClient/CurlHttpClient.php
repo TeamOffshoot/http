@@ -33,12 +33,6 @@ class CurlHttpClient extends HttpClientAdapter
     protected $certificatePath;
 
     /**
-     * an array of headers to be used in the request
-     * @var array
-     */
-    protected $headers;
-
-    /**
      *
      *
      * @param string $certificatePath
@@ -46,8 +40,8 @@ class CurlHttpClient extends HttpClientAdapter
     public function __construct($certificatePath = null)
     {
 
+        parent::__construct();
         $this->certificatePath = $certificatePath;
-        $this->headers = array();
 
     }
 
@@ -90,7 +84,7 @@ class CurlHttpClient extends HttpClientAdapter
         curl_setopt($ch, CURLOPT_POST, true);
 
         if (!is_null($params) && !is_array($params)) {
-            $this->headers[] = 'Content-Type: application/json';
+            $this->addHeader('Content-Type', 'application/json');
         }
 
         if (!is_null($params)) {
@@ -116,11 +110,6 @@ class CurlHttpClient extends HttpClientAdapter
         curl_setopt($ch, CURLOPT_USERAGENT, 'offshoot/http client');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $this->verifyHost);
-
-        if ($this->getAccessToken()) {
-            $this->headers[] = $this->getAccessTokenHeader()
-                . ": " . $this->getAccessToken();
-        }
 
         if ($this->verifyPeer === false) {
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

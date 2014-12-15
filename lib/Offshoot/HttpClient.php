@@ -9,16 +9,11 @@ interface HttpClient
     const GET = 'get';
 
     /**
-     * set the permanent access token
-     * @param string $token
+     * set a header on the request
+     * @param string $key
+     * @param string $value
      */
-    public function setAccessToken($token);
-
-    /**
-     * get the header name for the access token
-     * @return string
-     */
-    public function getAccessTokenHeader();
+    public function addHeader($key, $value);
 
     /**
      * make a get request to the given uri
