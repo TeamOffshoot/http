@@ -83,11 +83,6 @@ class CurlHttpClient extends HttpClientAdapter
         $ch = $this->initCurlHandler($uri);
         curl_setopt($ch, CURLOPT_POST, true);
 
-        if (!is_null($params) && !is_array($params)) {
-            $this->addHeader('Content-Type', 'application/json');
-            $this->addHeader('Accept', 'application/json');
-        }
-
         if (!is_null($params)) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
         }
