@@ -99,8 +99,6 @@ class CurlHttpClient extends HttpClientAdapter
     protected function initCurlHandler($uri)
     {
 
-        $headers = array();
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $uri);
         curl_setopt($ch, CURLOPT_USERAGENT, 'offshoot/http client');
