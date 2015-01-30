@@ -131,7 +131,7 @@ class CurlHttpClient extends HttpClientAdapter
     protected function makeRequest($ch)
     {
 
-        if (count($this->hasHeaders()) {
+        if ($this->hasHeaders()) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $this->getHttpHeaders());
         }
 
