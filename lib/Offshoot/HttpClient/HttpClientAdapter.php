@@ -25,14 +25,14 @@ abstract class HttpClientAdapter implements HttpClient
      */
     public function addHeader($key, $value)
     {
-        $this->headers[] = $key . ': ' . $value;
+        $this->headers[$key] = $value;
     }
 
     protected function getHttpHeaders()
     {
         return array_map(function($key, $value) {
              return $key . ': ' . $value;
-         }, array_keys($this->headers), $this->headers);
+        }, array_keys($this->headers), $this->headers);
     }
 
     protected function hasHeaders()
